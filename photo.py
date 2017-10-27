@@ -21,19 +21,23 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 
 
 #Check if there is any usb drive plugged
-while not os.path.isdir("/media/pi"):
-  time.sleep(5)
-  print "Please connect Usb Key"
+#while not os.path.isdir("/media/pi"):
+#  time.sleep(5)
+#  print "Please connect Usb Key"
 
-usbPaths=os.listdir("/media/pi")
+#usbPaths=os.listdir("/media/pi")
 #while not len(usbPaths):
 #   print "Please connect Usb Key"
 #   usbPaths=os.listdir("/media/pi")
 #   time.sleep(5)
 
 #Ok, USB Drive available
-usbPath=usbPaths[0]
-photo_path=usbPath+"Photos/"
+#usbPath=usbPaths[0]
+#photo_path=usbPath+"Photos/"
+photo_path="/home/pi/Photos"#for debug
+if not os.path.isdir(photo_path):
+  os.mkdir(photo_path)
+
 
 GPIO.setmode(GPIO.BCM)  # new
 GPIO.setup(gpio_pin, GPIO.IN, GPIO.PUD_UP)  # new
