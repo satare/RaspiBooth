@@ -25,6 +25,9 @@ Prerequisites :
 	 - un-zip to your app directory (can be
 	   "home")
 
+chmod +x raspi_booth.sh
+chmod +x shut_and_reboot.sh
+
 ... And you're done!
 
 How to launch at startup ?
