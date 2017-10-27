@@ -35,7 +35,7 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 #Ok, USB Drive available
 #usbPath=usbPaths[0]
 #photo_path=usbPath+"Photos/"
-photo_path="/home/pi/Photos"#for debug
+photo_path="/home/pi/Photos/"#for debug
 if not os.path.isdir(photo_path):
   os.mkdir(photo_path)
 
@@ -52,16 +52,13 @@ with picamera.PiCamera() as camera:
 	myfont = pygame.font.SysFont("monospace", 62)
 	screen = pygame.display.set_mode((width,height))
 	pygame.mouse.set_visible(False)
-
 	while True:
-
 		image=pygame.image.load(dir_path+"/welcome.jpeg")
 		screen.blit(image, (0 , 0))
 		pygame.display.update()
 		#GPIO.wait_for_edge(gpio_pin, GPIO.FALLING)  # new
 		camera.start_preview()
 		timestr = time.strftime("%Y%m%d-%H%M%S")
-
 		nomFinalFichier=photo_path+timestr+".jpg" #final canva filename
 		time.sleep(3)
 		for x in range(1, 4):
