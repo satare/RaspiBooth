@@ -17,7 +17,6 @@ height=960
 
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-photo_path=usbPath+"Photos/"
 #end Vars
 
 
@@ -30,6 +29,8 @@ while not len(usbPaths):
 
 #Ok, USB Drive available
 usbPath=usbPaths[0]
+photo_path=usbPath+"Photos/"
+
 GPIO.setmode(GPIO.BCM)  # new
 GPIO.setup(gpio_pin, GPIO.IN, GPIO.PUD_UP)  # new
 

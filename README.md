@@ -12,7 +12,7 @@ How to install
 
 Prerequisites :
 
-      sudo apt-get install python python-picamera python3-picamera python-rpi.gpio
+      sudo apt-get install python python-picamera python3-picamera python-rpi.gpio python-pygame python-pil 
 
  - With git:
 	 - sudo apt-get install git
