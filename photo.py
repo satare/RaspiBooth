@@ -16,14 +16,19 @@ height=960
 
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-usbPaths=os.listdir("/media/pi")
-usbPath=usbPaths[0]
 photo_path=usbPath+"Photos/"
 #end Vars
 
 
+#Check if there is any usb drive plugged
+usbPaths=os.listdir("/media/pi")
+while not len(usbPaths):
+	>>> "Please connect Usb Key"
+	usbPaths=os.listdir("/media/pi")
+    time.sleep(5)
 
-
+#Ok, USB Drive available
+usbPath=usbPaths[0]
 GPIO.setmode(GPIO.BCM)  # new
 GPIO.setup(gpio_pin, GPIO.IN, GPIO.PUD_UP)  # new
 

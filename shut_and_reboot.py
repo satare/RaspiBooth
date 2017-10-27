@@ -19,7 +19,6 @@ def reboot():
     output = process.communicate()[0]
     print output
 
-
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)  # new
 GPIO.setup(gpioShutdownPort, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # new
