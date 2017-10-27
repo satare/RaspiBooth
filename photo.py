@@ -8,14 +8,17 @@ import RPi.GPIO as GPIO  # new
 from subprocess import call
 
 #VARS
-#GPIO Pin Nbr for trigger the photo process
+#GPIO Pin Nbr to trigger the photo process
 gpio_pin=17
 #final size of your canva
 width=1280
 height=960
+
+
 dir_path = os.path.dirname(os.path.realpath(__file__))
-photo_path=dir_path+"Photos/"
-#TODO : write your photos to Usb Key directly
+usbPaths=os.listdir("/media/pi")
+usbPath=usbPaths[0]
+photo_path=usbPath+"Photos/"
 #end Vars
 
 
