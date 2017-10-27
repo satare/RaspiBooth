@@ -1,2 +1,4 @@
 # RaspiBooth
-Photobooth made of raspberry and Gphoto
+Photobooth application for raspberry
+
+Use Python
