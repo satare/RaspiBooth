@@ -23,7 +23,7 @@ photo_path=usbPath+"Photos/"
 #Check if there is any usb drive plugged
 usbPaths=os.listdir("/media/pi")
 while not len(usbPaths):
-	>>> "Please connect Usb Key"
+	print "Please connect Usb Key"
 	usbPaths=os.listdir("/media/pi")
     time.sleep(5)
 
