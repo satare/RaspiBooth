@@ -17,7 +17,7 @@ height=960
 
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-print dir_path
+
 #end Vars
 
 
@@ -55,10 +55,10 @@ with picamera.PiCamera() as camera:
 
 	while True:
 
-		image=pygame.image.load("welcome.jpeg")
+		image=pygame.image.load(dir_path+"/welcome.jpeg")
 		screen.blit(image, (0 , 0))
 		pygame.display.update()
-		GPIO.wait_for_edge(gpio_pin, GPIO.FALLING)  # new
+		#GPIO.wait_for_edge(gpio_pin, GPIO.FALLING)  # new
 		camera.start_preview()
 		timestr = time.strftime("%Y%m%d-%H%M%S")
 
