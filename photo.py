@@ -12,8 +12,9 @@ from subprocess import call
 #GPIO Pin Nbr to trigger the photo process
 gpio_pin=17
 #final size of your canva
-width=1280
-height=960
+width=1024
+height=768
+
 
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -39,7 +40,6 @@ photo_path="/home/pi/Photos/"#for debug
 if not os.path.isdir(photo_path):
   os.mkdir(photo_path)
 
-
 GPIO.setmode(GPIO.BCM)  # new
 GPIO.setup(gpio_pin, GPIO.IN, GPIO.PUD_UP)  # new
 
@@ -47,16 +47,19 @@ photoW=(width/2)-10
 photoH=(height/2)-10
 
 with picamera.PiCamera() as camera:
-	camera.hflip = True
+
+	#camera.hflip = True
 	pygame.init()
+	dispInfo =  pygame.display.Info()
 	myfont = pygame.font.SysFont("monospace", 62)
-	screen = pygame.display.set_mode((width,height))
+	screen = pygame.display.set_mode((dispInfo.current_w, dispInfo.current_h))
 	pygame.mouse.set_visible(False)
 	while True:
 		image=pygame.image.load(dir_path+"/welcome.jpeg")
 		screen.blit(image, (0 , 0))
 		pygame.display.update()
 		#GPIO.wait_for_edge(gpio_pin, GPIO.FALLING)  # new
+                time.sleep(6)
 		camera.start_preview()
 		timestr = time.strftime("%Y%m%d-%H%M%S")
 		nomFinalFichier=photo_path+timestr+".jpg" #final canva filename
@@ -86,6 +89,7 @@ with picamera.PiCamera() as camera:
 		image=pygame.image.load(nomFinalFichier)
 		screen.blit(image, (0 , 0))
 		pygame.display.update()
-		for x in range(1, 4):
-			os.remove(photo_path+x+".jpg")
+		#for x in range(1, 4):
+		#	os.remove(photo_path+x+".jpg")
 		time.sleep(5)
+		sys.exit()
