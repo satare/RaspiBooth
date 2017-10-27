@@ -1,7 +1,8 @@
 RaspiBooth
 ==========
 *Photobooth application for raspberry*
-Use
+
+Use :
  - Python
  - pygame
  - picamera
@@ -11,21 +12,20 @@ How to install
 
 Prerequisites :
 
-  sudo apt-get install python-picamera python3-picamera python-rpi.gpio
+      sudo apt-get install python-picamera python3-picamera python-rpi.gpio
 
  - With git:
-
-	 sudo apt-get install git
-
-  go to your install directory (can be Home)
-	cd
-	git clone https://github.com/satare/RaspiBooth.git
+	 - sudo apt-get install git
+	 - go to your install directory (can be *home*)   
+		 - cd
+	 - git clone https://github.com/satare/RaspiBooth.git
 
  - Or via direct download :
+	 - download Zipfile from Github
+	 - un-zip to your app directory (can be
+	   "home")
 
-	download Zipfile from Github, un-zip to your app directory (can be "home")
-
-and you're done!
+... And you're done!
 
 How to launch at startup ?
 --------------------------
@@ -39,5 +39,7 @@ add :
 
 Gpio pins description :
 -----------------------
+When you take your pi ethernet port up :
+Connect ground and gpio [1-25] to temporary switch
 
 ![Raspberry Pi Gpio Description](https://github.com/satare/RaspiBooth/blob/master/doc/raspberry-pi-gpio-layout-revision-1.png?raw=true)
