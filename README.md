@@ -9,10 +9,15 @@ Use
 How to install
 --------------------------
 
+Prerequisites :
+
+  sudo apt-get install python-picamera python3-picamera python-rpi.gpio
+
  - With git:
 
-	sudo apt-get install git
-	go to your install directory (can be Home)
+	 sudo apt-get install git
+
+  go to your install directory (can be Home)
 	cd
 	git clone https://github.com/satare/RaspiBooth.git
 
