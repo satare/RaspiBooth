@@ -4,6 +4,7 @@ import time
 import random
 import picamera
 import os
+import Image
 import RPi.GPIO as GPIO  # new
 from subprocess import call
 
