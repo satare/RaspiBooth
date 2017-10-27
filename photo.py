@@ -48,9 +48,9 @@ photoH=(height/2)-10
 with picamera.PiCamera() as camera:
 	camera.hflip = True
 	pygame.init()
-	pygame.mouse.set_visible(False)
 	myfont = pygame.font.SysFont("monospace", 62)
 	screen = pygame.display.set_mode((width,height))
+	pygame.mouse.set_visible(False)
 
 	while True:
 
