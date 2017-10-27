@@ -1,10 +1,10 @@
-import Image
+#import Image
 import pygame,sys
 import time
 import random
 import picamera
 import os
-import Image
+from PIL import Image
 import RPi.GPIO as GPIO  # new
 from subprocess import call
 
