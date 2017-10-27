@@ -32,8 +32,6 @@ usbPath=usbPaths[0]
 GPIO.setmode(GPIO.BCM)  # new
 GPIO.setup(gpio_pin, GPIO.IN, GPIO.PUD_UP)  # new
 
-
-
 photoW=(width/2)-10
 photoH=(height/2)-10
 
@@ -58,7 +56,7 @@ with picamera.PiCamera() as camera:
 		for x in range(1, 4):
 			tmpResizedFileName=photo_path+x+".jpg" #resized file name, temp
 			FullSizeFileName=photo_path+timestr+"_"+x+".jpg" #fullsize picture filename
-    		camera.capture(FullSizeFileName,format='jpeg') # take a pic, name it
+			camera.capture(FullSizeFileName,format='jpeg') # take a pic, name it
 			img=Image.open(FullSizeFileName)# open fullsize
 			img = img.resize((photoW, photoH), Image.ANTIALIAS)# resize image
 			img.save(tmpResizedFileName) # save image to temp file, ready to paste to canva
