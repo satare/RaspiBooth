@@ -1,6 +1,4 @@
 #!/bin/sh
 
-
-python shut.py &
-python reboot.py &
+python shut_and_reboot.py &
 python photo.py &
