@@ -10,18 +10,13 @@ import RPi.GPIO as GPIO  # new
 from subprocess import call
 
 #VARS
-#GPIO Pin Nbr to trigger the photo process
 gpio_pin=sys.argv[1]
 photo_path=sys.argv[0]
 #end Vars
 
-
+#setup
 dir_path = os.path.dirname(os.path.realpath(__file__))
-
-
 welcomePic=dir_path+"/welcome.jpeg"
-
-
 GPIO.setmode(GPIO.BCM)  # new
 GPIO.setup(gpio_pin, GPIO.IN, GPIO.PUD_UP)  # new
 
@@ -61,7 +56,8 @@ def splash(fileName):
 
 with picamera.PiCamera() as camera:
     pygame.init()
-    camera.vflip = True
+    #camera.vflip = True
+
     myfont = pygame.font.SysFont("monospace", 62)
     screen = pygame.display.set_mode((dispInfo.current_w, dispInfo.current_h))
     pygame.mouse.set_visible(False)
