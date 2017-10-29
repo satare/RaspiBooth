@@ -64,6 +64,7 @@ with picamera.PiCamera() as camera:
     #camera.vflip = True
     myfont = pygame.font.SysFont("monospace", 62)
     dispInfo=pygame.display.Info()
+    print dispInfo
     screen = pygame.display.set_mode([dispInfo.current_w, dispInfo.current_h])
     pygame.mouse.set_visible(False)
     while True:
