@@ -61,14 +61,14 @@ with picamera.PiCamera() as camera:
     pygame.init()
     #camera.vflip = True
     myfont = pygame.font.SysFont("monospace", 62)
-    dispInfo=pygame.display.Info()
+    #dispInfo=pygame.display.Info()
     #print dispInfo
-    screen = pygame.display.set_mode((dispInfo.current_w,dispInfo.current_h))
+    screen = pygame.display.set_mode(getResolution())
     pygame.mouse.set_visible(False)
     while True:
         allImages=[]
         splash(welcomePic)
-        GPIO.wait_for_edge(gpio_pin, GPIO.FALLING)  # new
+        #GPIO.wait_for_edge(gpio_pin, GPIO.FALLING)  # new
         time.sleep(3) ## only for debugging
         camera.start_preview()
         timestr = time.strftime("%Y%m%d-%H%M%S")
