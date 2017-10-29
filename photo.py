@@ -37,8 +37,8 @@ def createCanva(myImages,nomFinalFichier):
     image1024 = Image.open(myImages[3])
 
     blank_image.paste(image64, (0+border,0+border))
-    blank_image.paste(image128, ((canvaSize[0]/2)+border/2,0+border/2))
-    blank_image.paste(image512, (0+border/2,(canvaSize[1]/2)+border/2))
+    blank_image.paste(image128, ((canvaSize[0]/2)+border/2,0+border))
+    blank_image.paste(image512, (0+border,(canvaSize[1]/2)+border/2))
     blank_image.paste(image1024, ((canvaSize[0]/2)+border/2,(canvaSize[1]/2)+border/2))
     blank_image.save(nomFinalFichier)
 
@@ -100,9 +100,10 @@ with picamera.PiCamera() as camera:
 
         createCanva(allImages,nomFinalFichier)
         camera.stop_preview()
-        FinalResult=pygame.image.load(nomFinalFichier)
+        FinalImage=Image.open(nomFinalFichier) # open fullsize
+        FinalImage = img.resize((dispInfo.current_w, dispInfo.current_h), Image.ANTIALIAS) # resize image
 
-        screen.blit(FinalResult, (0 , 0)) #center the result on your screen
+        screen.blit(FinalImage, (0 , 0)) #center the result on your screen
         pygame.display.update()
         time.sleep(5)
         sys.exit()
