@@ -41,12 +41,10 @@ def createCanva(myImages,nomFinalFichier):
     blank_image.paste(image1024, ((canvaSize[0]/2)+border/2,(canvaSize[1]/2)+border/2))
     blank_image.save(nomFinalFichier)
 
-def getResolution():
-	pygame.init()
-	dispInfo=pygame.display.Info()
-	return (dispInfo.current_w, dispInfo.current_h);
-
-
+#def getResolution():
+#	pygame.init()
+#	dispInfo=pygame.display.Info()
+#	return (dispInfo.current_w, dispInfo.current_h);
 
 def splash(fileName):
     pygame.init()
@@ -65,7 +63,7 @@ with picamera.PiCamera() as camera:
     myfont = pygame.font.SysFont("monospace", 62)
     dispInfo=pygame.display.Info()
     #print dispInfo
-    screen = pygame.display.set_mode([800, 600])
+    screen = pygame.display.set_mode((dispInfo.current_w,dispInfo.current_h))
     pygame.mouse.set_visible(False)
     while True:
         allImages=[]
