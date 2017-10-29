@@ -13,6 +13,9 @@ from subprocess import call
 gpio_pin=17
 #end Vars
 
+dir_path = os.path.dirname(os.path.realpath(__file__))
+photo_path="/home/pi/Photos/"#for debug
+
 pygame.init()
 dispInfo =  pygame.display.Info()
 welcomeTemplate=dir_path+"/welcome.jpeg"
@@ -22,7 +25,14 @@ welcomePicRszd=Image.open(welcomeTemplate)
 welcomePicRszd=welcomePicRszd.resize((dispInfo.current_w, dispInfo.current_h), Image.ANTIALIAS) # resize image
 welcomePicRszd.save(welcomePic)
 
-dir_path = os.path.dirname(os.path.realpath(__file__))
+#Ok, USB Drive available
+#usbPath=usbPaths[0]
+#photo_path=usbPath+"Photos/"
+if not os.path.isdir(photo_path):
+  os.mkdir(photo_path)
+
+GPIO.setmode(GPIO.BCM)  # new
+GPIO.setup(gpio_pin, GPIO.IN, GPIO.PUD_UP)  # new
 
 def createCanva(myImages,nomFinalFichier):
     border=10
@@ -58,15 +68,7 @@ def createCanva(myImages,nomFinalFichier):
 #   usbPaths=os.listdir("/media/pi")
 #   time.sleep(5)
 
-#Ok, USB Drive available
-#usbPath=usbPaths[0]
-#photo_path=usbPath+"Photos/"
-photo_path="/home/pi/Photos/"#for debug
-if not os.path.isdir(photo_path):
-  os.mkdir(photo_path)
 
-GPIO.setmode(GPIO.BCM)  # new
-GPIO.setup(gpio_pin, GPIO.IN, GPIO.PUD_UP)  # new
 
 
 with picamera.PiCamera() as camera:
