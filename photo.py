@@ -79,10 +79,9 @@ with picamera.PiCamera() as camera:
             camera.capture(FullSizeFileName,format='jpeg') # take a pic, name it
             allImages.append(FullSizeFileName)
             time.sleep(1)
-
         createCanva(allImages,nomFinalFichier)
-        camera.stop_preview()
         splash(nomFinalFichier)
+        camera.stop_preview()
 
         time.sleep(5)
         sys.exit()
