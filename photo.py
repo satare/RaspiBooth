@@ -102,8 +102,10 @@ with picamera.PiCamera() as camera:
         camera.stop_preview()
         FinalImage=Image.open(nomFinalFichier) # open fullsize
         FinalImage=FinalImage.resize((dispInfo.current_w, dispInfo.current_h), Image.ANTIALIAS) # resize image
-
-        screen.blit(FinalImage, (0 , 0)) #center the result on your screen
+        FinalImage.save(photo_path+"/preview.jpeg")
+        image=pygame.image.load(photo_path+"/preview.jpeg")
+        screen.blit(image, (0 , 0))
         pygame.display.update()
+
         time.sleep(5)
         sys.exit()
