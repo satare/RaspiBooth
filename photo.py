@@ -13,7 +13,7 @@ from subprocess import call
 gpio_pin=17
 #end Vars
 
-
+pygame.init()
 dispInfo =  pygame.display.Info()
 welcomeTemplate=dir_path+"/welcome.jpeg"
 welcomePic=dir_path+"/welcome_resized.jpeg"
@@ -72,7 +72,6 @@ GPIO.setup(gpio_pin, GPIO.IN, GPIO.PUD_UP)  # new
 with picamera.PiCamera() as camera:
 
     camera.vflip = True
-    pygame.init()
     myfont = pygame.font.SysFont("monospace", 62)
     screen = pygame.display.set_mode((dispInfo.current_w, dispInfo.current_h))
     pygame.mouse.set_visible(False)
