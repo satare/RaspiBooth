@@ -64,7 +64,7 @@ with picamera.PiCamera() as camera:
 		timestr = time.strftime("%Y%m%d-%H%M%S")
 		nomFinalFichier=photo_path+timestr+".jpg" #final canva filename
 		time.sleep(3)
-		for x in range(1, 4):
+		for x in range(1, 5):
 			tmpResizedFileName=photo_path+str(x)+".jpg" #resized file name, temp
 			FullSizeFileName=photo_path+str(timestr)+"_"+str(x)+".jpg" #fullsize picture filename
 			camera.capture(FullSizeFileName,format='jpeg') # take a pic, name it
@@ -89,7 +89,7 @@ with picamera.PiCamera() as camera:
 		image=pygame.image.load(nomFinalFichier)
 		screen.blit(image, (0 , 0))
 		pygame.display.update()
-		#for x in range(1, 4):
+		#for x in range(1, 5):
 		#	os.remove(photo_path+x+".jpg")
 		time.sleep(5)
 		sys.exit()
