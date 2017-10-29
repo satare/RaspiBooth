@@ -65,11 +65,11 @@ with picamera.PiCamera() as camera:
 		nomFinalFichier=photo_path+timestr+".jpg" #final canva filename
 		time.sleep(3)
 		for x in range(1, 4):
-			tmpResizedFileName=photo_path+x+".jpg" #resized file name, temp
-			FullSizeFileName=photo_path+timestr+"_"+x+".jpg" #fullsize picture filename
+			tmpResizedFileName=photo_path+str(x)+".jpg" #resized file name, temp
+			FullSizeFileName=photo_path+str(timestr)+"_"+str(x)+".jpg" #fullsize picture filename
 			camera.capture(FullSizeFileName,format='jpeg') # take a pic, name it
-			img=Image.open(FullSizeFileName)# open fullsize
-			img = img.resize((photoW, photoH), Image.ANTIALIAS)# resize image
+			img=Image.open(FullSizeFileName) # open fullsize
+			img = img.resize((photoW, photoH), Image.ANTIALIAS) # resize image
 			img.save(tmpResizedFileName) # save image to temp file, ready to paste to canva
 			time.sleep(1)
 
