@@ -4,26 +4,23 @@ import time
 import random
 import picamera
 import os
+import sys
 from PIL import Image
 import RPi.GPIO as GPIO  # new
 from subprocess import call
 
 #VARS
 #GPIO Pin Nbr to trigger the photo process
-gpio_pin=17
+gpio_pin=sys.argv[1]
+photo_path=sys.argv[0]
 #end Vars
 
+
 dir_path = os.path.dirname(os.path.realpath(__file__))
-photo_path="/home/pi/Photos/"#for debug
+
 
 welcomePic=dir_path+"/welcome.jpeg"
 
-
-#Ok, USB Drive available
-#usbPath=usbPaths[0]
-#photo_path=usbPath+"Photos/"
-if not os.path.isdir(photo_path):
-  os.mkdir(photo_path)
 
 GPIO.setmode(GPIO.BCM)  # new
 GPIO.setup(gpio_pin, GPIO.IN, GPIO.PUD_UP)  # new
@@ -62,21 +59,6 @@ def splash(fileName):
     screen.blit(image, (0 , 0))
     pygame.display.update()
 
-
-#Check if there is any usb drive plugged
-#while not os.path.isdir("/media/pi"):
-#  time.sleep(5)
-#  print "Please connect Usb Key"
-
-#usbPaths=os.listdir("/media/pi")
-#while not len(usbPaths):
-#   print "Please connect Usb Key"
-#   usbPaths=os.listdir("/media/pi")
-#   time.sleep(5)
-
-
-
-
 with picamera.PiCamera() as camera:
     pygame.init()
     camera.vflip = True
@@ -86,7 +68,7 @@ with picamera.PiCamera() as camera:
     while True:
         allImages=[]
         splash(welcomePic)
-        #GPIO.wait_for_edge(gpio_pin, GPIO.FALLING)  # new
+        GPIO.wait_for_edge(gpio_pin, GPIO.FALLING)  # new
         time.sleep(3) ## only for debugging
         camera.start_preview()
         timestr = time.strftime("%Y%m%d-%H%M%S")
