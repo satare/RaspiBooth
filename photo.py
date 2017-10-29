@@ -63,7 +63,8 @@ with picamera.PiCamera() as camera:
     pygame.init()
     #camera.vflip = True
     #myfont = pygame.font.SysFont("monospace", 62)
-    pygame.display.set_mode(getResolution())
+    dispInfo=pygame.display.Info()
+    pygame.display.set_mode((dispInfo.current_w,dispInfo.current_h)
     pygame.mouse.set_visible(False)
     while True:
         allImages=[]
