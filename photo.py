@@ -68,8 +68,8 @@ with picamera.PiCamera() as camera:
     while True:
         allImages=[]
         splash(welcomePic)
-        #GPIO.wait_for_edge(gpio_pin, GPIO.FALLING)  # new
-        time.sleep(3) ## only for debugging
+        GPIO.wait_for_edge(gpio_pin, GPIO.FALLING)  # new
+        #time.sleep(3) ## only for debugging
         camera.start_preview()
         timestr = time.strftime("%Y%m%d-%H%M%S")
         nomFinalFichier=photo_path+timestr+".jpg" #final canva filename
@@ -84,4 +84,4 @@ with picamera.PiCamera() as camera:
         camera.stop_preview()
 
         time.sleep(5)
-        sys.exit()
+        #sys.exit()
