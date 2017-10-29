@@ -3,7 +3,7 @@ import sys
 import RPi.GPIO as GPIO
 
 #vars
-gpioShutdownPort=sys.argv[0]
+gpioShutdownPort=int(sys.argv[1])
 #when some gpio-port it triggered, reboot of halt the Pi, depending on the time button is holded down.
 
 def halt():

@@ -10,9 +10,10 @@ import RPi.GPIO as GPIO  # new
 from subprocess import call
 
 #VARS
-gpio_pin=sys.argv[1]
-photo_path=sys.argv[0]
+gpio_pin=int(sys.argv[2])
+photo_path=str(sys.argv[1])
 #end Vars
+
 
 #setup
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -40,15 +41,20 @@ def createCanva(myImages,nomFinalFichier):
     blank_image.paste(image1024, ((canvaSize[0]/2)+border/2,(canvaSize[1]/2)+border/2))
     blank_image.save(nomFinalFichier)
 
+def getResolution():
+	pygame.init()
+	dispInfo=pygame.display.Info()
+	return (dispInfo.current_w, dispInfo.current_h)
 
-pygame.init()
-dispInfo=pygame.display.Info()
+print getResolution()
+sys.exit()
+
 
 def splash(fileName):
     #pygame.init()
     #dispInfo =  pygame.display.Info()
     FinalImage=Image.open(fileName) # open fullsize
-    FinalImage=FinalImage.resize((dispInfo.current_w, dispInfo.current_h), Image.ANTIALIAS) # resize image
+    FinalImage=FinalImage.resize(getResolution(), Image.ANTIALIAS) # resize image
     FinalImage.save(photo_path+"/preview.jpeg")
     image=pygame.image.load(photo_path+"/preview.jpeg")
     screen.blit(image, (0 , 0))
@@ -57,9 +63,8 @@ def splash(fileName):
 with picamera.PiCamera() as camera:
     pygame.init()
     #camera.vflip = True
-
-    myfont = pygame.font.SysFont("monospace", 62)
-    screen = pygame.display.set_mode((dispInfo.current_w, dispInfo.current_h))
+    #myfont = pygame.font.SysFont("monospace", 62)
+    pygame.display.set_mode(getResolution())
     pygame.mouse.set_visible(False)
     while True:
         allImages=[]
