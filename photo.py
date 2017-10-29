@@ -41,10 +41,10 @@ def createCanva(myImages,nomFinalFichier):
     blank_image.paste(image1024, ((canvaSize[0]/2)+border/2,(canvaSize[1]/2)+border/2))
     blank_image.save(nomFinalFichier)
 
-#def getResolution():
-#	pygame.init()
-#	dispInfo=pygame.display.Info()
-#	return (dispInfo.current_w, dispInfo.current_h);
+def getResolution():
+	pygame.init()
+	dispInfo=pygame.display.Info()
+	return (dispInfo.current_w, dispInfo.current_h);
 
 def splash(fileName):
     pygame.init()
