@@ -101,7 +101,7 @@ with picamera.PiCamera() as camera:
         createCanva(allImages,nomFinalFichier)
         camera.stop_preview()
         FinalImage=Image.open(nomFinalFichier) # open fullsize
-        FinalImage = img.resize((dispInfo.current_w, dispInfo.current_h), Image.ANTIALIAS) # resize image
+        FinalImage=FinalImage.resize((dispInfo.current_w, dispInfo.current_h), Image.ANTIALIAS) # resize image
 
         screen.blit(FinalImage, (0 , 0)) #center the result on your screen
         pygame.display.update()
