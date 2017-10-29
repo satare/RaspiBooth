@@ -11,16 +11,18 @@ from subprocess import call
 #VARS
 #GPIO Pin Nbr to trigger the photo process
 gpio_pin=17
-#final size of your canva
-#width=1024
-#height=768
-
-
-
-dir_path = os.path.dirname(os.path.realpath(__file__))
-
 #end Vars
 
+
+dispInfo =  pygame.display.Info()
+welcomeTemplate=dir_path+"/welcome.jpeg"
+welcomePic=dir_path+"/welcome_resized.jpeg"
+
+welcomePicRszd=Image.open(welcomeTemplate)
+welcomePicRszd=welcomePicRszd.resize((dispInfo.current_w, dispInfo.current_h), Image.ANTIALIAS) # resize image
+welcomePicRszd.save(welcomePic)
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
 def createCanva(myImages,nomFinalFichier):
     border=10
@@ -66,20 +68,17 @@ if not os.path.isdir(photo_path):
 GPIO.setmode(GPIO.BCM)  # new
 GPIO.setup(gpio_pin, GPIO.IN, GPIO.PUD_UP)  # new
 
-#photoW=(width/2)-10
-#photoH=(height/2)-10
 
 with picamera.PiCamera() as camera:
 
     camera.vflip = True
     pygame.init()
-    dispInfo =  pygame.display.Info()
     myfont = pygame.font.SysFont("monospace", 62)
     screen = pygame.display.set_mode((dispInfo.current_w, dispInfo.current_h))
     pygame.mouse.set_visible(False)
     while True:
         allImages=[]
-        image=pygame.image.load(dir_path+"/welcome.jpeg")
+        image=pygame.image.load(welcomePic)
         screen.blit(image, (0 , 0))
         pygame.display.update()
         #GPIO.wait_for_edge(gpio_pin, GPIO.FALLING)  # new
@@ -89,13 +88,9 @@ with picamera.PiCamera() as camera:
         nomFinalFichier=photo_path+timestr+".jpg" #final canva filename
         time.sleep(3)
         for x in range(1, 5):
-            #tmpResizedFileName=photo_path+str(x)+".jpg" #resized file name, temp
             FullSizeFileName=photo_path+str(timestr)+"_"+str(x)+".jpg" #fullsize picture filename
             camera.capture(FullSizeFileName,format='jpeg') # take a pic, name it
             allImages.append(FullSizeFileName)
-            #img=Image.open(FullSizeFileName) # open fullsize
-            #img = img.resize((photoW, photoH), Image.ANTIALIAS) # resize image
-            #img.save(tmpResizedFileName) # save image to temp file, ready to paste to canva
             time.sleep(1)
 
         createCanva(allImages,nomFinalFichier)
