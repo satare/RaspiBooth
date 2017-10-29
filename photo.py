@@ -44,17 +44,15 @@ def createCanva(myImages,nomFinalFichier):
 def getResolution():
 	pygame.init()
 	dispInfo=pygame.display.Info()
-	return (dispInfo.current_w, dispInfo.current_h)
+	return (dispInfo.current_w, dispInfo.current_h);
 
-print getResolution()
-sys.exit()
 
 
 def splash(fileName):
     #pygame.init()
     #dispInfo =  pygame.display.Info()
     FinalImage=Image.open(fileName) # open fullsize
-    FinalImage=FinalImage.resize(getResolution(), Image.ANTIALIAS) # resize image
+    FinalImage=FinalImage.resize((getResolution()), Image.ANTIALIAS) # resize image
     FinalImage.save(photo_path+"/preview.jpeg")
     image=pygame.image.load(photo_path+"/preview.jpeg")
     screen.blit(image, (0 , 0))
