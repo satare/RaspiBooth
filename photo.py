@@ -71,7 +71,7 @@ GPIO.setup(gpio_pin, GPIO.IN, GPIO.PUD_UP)  # new
 
 with picamera.PiCamera() as camera:
 
-    camera.hflip = True
+    camera.vflip = True
     pygame.init()
     dispInfo =  pygame.display.Info()
     myfont = pygame.font.SysFont("monospace", 62)
@@ -83,7 +83,7 @@ with picamera.PiCamera() as camera:
         screen.blit(image, (0 , 0))
         pygame.display.update()
         #GPIO.wait_for_edge(gpio_pin, GPIO.FALLING)  # new
-        time.sleep(6)
+        time.sleep(3)
         camera.start_preview()
         timestr = time.strftime("%Y%m%d-%H%M%S")
         nomFinalFichier=photo_path+timestr+".jpg" #final canva filename
