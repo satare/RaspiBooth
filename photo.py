@@ -16,14 +16,8 @@ gpio_pin=17
 dir_path = os.path.dirname(os.path.realpath(__file__))
 photo_path="/home/pi/Photos/"#for debug
 
-pygame.init()
-dispInfo =  pygame.display.Info()
-welcomeTemplate=dir_path+"/welcome.jpeg"
-welcomePic=dir_path+"/welcome_resized.jpeg"
+welcomePic=dir_path+"/welcome.jpeg"
 
-welcomePicRszd=Image.open(welcomeTemplate)
-welcomePicRszd=welcomePicRszd.resize((dispInfo.current_w, dispInfo.current_h), Image.ANTIALIAS) # resize image
-welcomePicRszd.save(welcomePic)
 
 #Ok, USB Drive available
 #usbPath=usbPaths[0]
@@ -54,7 +48,15 @@ def createCanva(myImages,nomFinalFichier):
     blank_image.paste(image1024, ((canvaSize[0]/2)+border/2,(canvaSize[1]/2)+border/2))
     blank_image.save(nomFinalFichier)
 
-
+def splash(fileName)
+    pygame.init()
+    dispInfo =  pygame.display.Info()
+    FinalImage=Image.open(fileName) # open fullsize
+    FinalImage=FinalImage.resize((dispInfo.current_w, dispInfo.current_h), Image.ANTIALIAS) # resize image
+    FinalImage.save(photo_path+"/preview.jpeg")
+    image=pygame.image.load(photo_path+"/preview.jpeg")
+    screen.blit(image, (0 , 0))
+    pygame.display.update()
 
 
 #Check if there is any usb drive plugged
@@ -79,11 +81,9 @@ with picamera.PiCamera() as camera:
     pygame.mouse.set_visible(False)
     while True:
         allImages=[]
-        image=pygame.image.load(welcomePic)
-        screen.blit(image, (0 , 0))
-        pygame.display.update()
+        splash(welcomePic)
         #GPIO.wait_for_edge(gpio_pin, GPIO.FALLING)  # new
-        time.sleep(3)
+        time.sleep(3) ## only for debugging
         camera.start_preview()
         timestr = time.strftime("%Y%m%d-%H%M%S")
         nomFinalFichier=photo_path+timestr+".jpg" #final canva filename
@@ -96,12 +96,7 @@ with picamera.PiCamera() as camera:
 
         createCanva(allImages,nomFinalFichier)
         camera.stop_preview()
-        FinalImage=Image.open(nomFinalFichier) # open fullsize
-        FinalImage=FinalImage.resize((dispInfo.current_w, dispInfo.current_h), Image.ANTIALIAS) # resize image
-        FinalImage.save(photo_path+"/preview.jpeg")
-        image=pygame.image.load(photo_path+"/preview.jpeg")
-        screen.blit(image, (0 , 0))
-        pygame.display.update()
+        splash(nomFinalFichier)
 
         time.sleep(5)
         sys.exit()
