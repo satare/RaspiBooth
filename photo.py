@@ -48,41 +48,41 @@ GPIO.setup(gpio_pin, GPIO.IN, GPIO.PUD_UP)  # new
 
 with picamera.PiCamera() as camera:
 
-	camera.hflip = True
-	pygame.init()
-	dispInfo =  pygame.display.Info()
-	myfont = pygame.font.SysFont("monospace", 62)
-	screen = pygame.display.set_mode((dispInfo.current_w, dispInfo.current_h))
-	pygame.mouse.set_visible(False)
-	while True:
+    camera.hflip = True
+    pygame.init()
+    dispInfo =  pygame.display.Info()
+    myfont = pygame.font.SysFont("monospace", 62)
+    screen = pygame.display.set_mode((dispInfo.current_w, dispInfo.current_h))
+    pygame.mouse.set_visible(False)
+    while True:
         allImages=[]
-		image=pygame.image.load(dir_path+"/welcome.jpeg")
-		screen.blit(image, (0 , 0))
-		pygame.display.update()
-		#GPIO.wait_for_edge(gpio_pin, GPIO.FALLING)  # new
+        image=pygame.image.load(dir_path+"/welcome.jpeg")
+        screen.blit(image, (0 , 0))
+        pygame.display.update()
+        #GPIO.wait_for_edge(gpio_pin, GPIO.FALLING)  # new
         time.sleep(6)
-		camera.start_preview()
-		timestr = time.strftime("%Y%m%d-%H%M%S")
-		nomFinalFichier=photo_path+timestr+".jpg" #final canva filename
-		time.sleep(3)
-		for x in range(1, 5):
-			#tmpResizedFileName=photo_path+str(x)+".jpg" #resized file name, temp
-			FullSizeFileName=photo_path+str(timestr)+"_"+str(x)+".jpg" #fullsize picture filename
-			camera.capture(FullSizeFileName,format='jpeg') # take a pic, name it
+        camera.start_preview()
+        timestr = time.strftime("%Y%m%d-%H%M%S")
+        nomFinalFichier=photo_path+timestr+".jpg" #final canva filename
+        time.sleep(3)
+        for x in range(1, 5):
+            #tmpResizedFileName=photo_path+str(x)+".jpg" #resized file name, temp
+            FullSizeFileName=photo_path+str(timestr)+"_"+str(x)+".jpg" #fullsize picture filename
+            camera.capture(FullSizeFileName,format='jpeg') # take a pic, name it
             allImages.append(FullSizeFileName)
-			#img=Image.open(FullSizeFileName) # open fullsize
-			#img = img.resize((photoW, photoH), Image.ANTIALIAS) # resize image
-			#img.save(tmpResizedFileName) # save image to temp file, ready to paste to canva
-			time.sleep(1)
+            #img=Image.open(FullSizeFileName) # open fullsize
+            #img = img.resize((photoW, photoH), Image.ANTIALIAS) # resize image
+            #img.save(tmpResizedFileName) # save image to temp file, ready to paste to canva
+            time.sleep(1)
 
         createCanva(allImages,nomFinalFichier)
-		camera.stop_preview()
+        camera.stop_preview()
         FinalResult=pygame.image.load(nomFinalFichier)
 
-		screen.blit(FinalResult, (0 , 0)) #center the result on your screen
-		pygame.display.update()
-		time.sleep(5)
-		sys.exit()
+        screen.blit(FinalResult, (0 , 0)) #center the result on your screen
+        pygame.display.update()
+        time.sleep(5)
+        sys.exit()
 
 
 def createCanva(myImages,nomFinalFichier):
