@@ -22,6 +22,29 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 #end Vars
 
 
+def createCanva(myImages,nomFinalFichier):
+    border=10
+    # all images must be the same size
+    imgwidth= Image.open(myImages[0])
+    width, height = imgwidth.size
+
+    canvaSize=((width*2)+(3*border), ((height*2)+(3*border)))
+
+    blank_image = Image.new("RGB", canvaSize)
+    image64 = Image.open(myImages[0])
+    image128 = Image.open(myImages[1])
+    image512 = Image.open(myImages[2])
+    image1024 = Image.open(myImages[3])
+
+    blank_image.paste(image64, (0+border,0+border))
+    blank_image.paste(image128, ((canvaSize[0]/2)+border/2,0+border/2))
+    blank_image.paste(image512, (0+border/2,(canvaSize[1]/2)+border/2))
+    blank_image.paste(image1024, ((canvaSize[0]/2)+border/2,(canvaSize[1]/2)+border/2))
+    blank_image.save(nomFinalFichier)
+
+
+
+
 #Check if there is any usb drive plugged
 #while not os.path.isdir("/media/pi"):
 #  time.sleep(5)
@@ -83,24 +106,3 @@ with picamera.PiCamera() as camera:
         pygame.display.update()
         time.sleep(5)
         sys.exit()
-
-
-def createCanva(myImages,nomFinalFichier):
-    border=10
-    # all images must be the same size
-    imgwidth= Image.open(myImages[0])
-    width, height = imgwidth.size
-
-    canvaSize=((width*2)+(3*border), ((height*2)+(3*border)))
-
-    blank_image = Image.new("RGB", canvaSize)
-    image64 = Image.open(myImages[0])
-    image128 = Image.open(myImages[1])
-    image512 = Image.open(myImages[2])
-    image1024 = Image.open(myImages[3])
-
-    blank_image.paste(image64, (0+border,0+border))
-    blank_image.paste(image128, ((canvaSize[0]/2)+border/2,0+border/2))
-    blank_image.paste(image512, (0+border/2,(canvaSize[1]/2)+border/2))
-    blank_image.paste(image1024, ((canvaSize[0]/2)+border/2,(canvaSize[1]/2)+border/2))
-    blank_image.save(nomFinalFichier)
