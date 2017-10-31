@@ -17,4 +17,4 @@ fi
 #first usbKey is /dev/sda1 (first partition)
 sudo mount /dev/sda1 $photoDir -o uid=pi,gid=pi
 #launch photobooth script
-python photo.py $photoDir $photoGPIO & # arg1 : photoDir, arg2 : gpioPin to trigger
+python photo.py $photoDir $photoGPIO  # arg1 : photoDir, arg2 : gpioPin to trigger
