@@ -26,7 +26,8 @@ Prerequisites :
 	   "home")
 
 chmod +x raspi_booth.sh
-chmod +x shut_and_reboot.sh
+
+You should then change values in the "raspi_booth" according to your environnement.
 
 ... And you're done!
 
