@@ -45,4 +45,6 @@ Gpio pins description :
 When you take your pi ethernet port up :
 Connect ground and gpio [1-25] to temporary switch
 
-![Raspberry Pi Gpio Description](https://github.com/satare/RaspiBooth/blob/master/doc/raspberry-pi-gpio-layout-revision-1.png?raw=true)
+Please refere to the corrent documentation, according to your equipement : 
+
+https://www.raspberrypi.org/documentation/usage/gpio/
