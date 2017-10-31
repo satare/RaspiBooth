@@ -48,10 +48,8 @@ def getResolution():
 
 def splash(fileName):
     pygame.init()
-    #dispInfo =  pygame.display.Info()
     FinalImage=Image.open(fileName) # open fullsize
-    dispInfo=pygame.display.Info()
-    FinalImage=FinalImage.resize((dispInfo.current_w,dispInfo.current_h), Image.ANTIALIAS) # resize image
+    FinalImage=FinalImage.resize(getResolution(), Image.ANTIALIAS) # resize image
     FinalImage.save(photo_path+"/preview.jpeg")
     image=pygame.image.load(photo_path+"/preview.jpeg")
     screen.blit(image, (0 , 0))
@@ -60,7 +58,7 @@ def splash(fileName):
 with picamera.PiCamera() as camera:
     pygame.init()
     #camera.vflip = True
-    myfont = pygame.font.SysFont("monospace", 62)
+    #myfont = pygame.font.SysFont("monospace", 62)
     #dispInfo=pygame.display.Info()
     #print dispInfo
     screen = pygame.display.set_mode(getResolution())
@@ -69,19 +67,16 @@ with picamera.PiCamera() as camera:
         allImages=[]
         splash(welcomePic)
         GPIO.wait_for_edge(gpio_pin, GPIO.FALLING)  # new
-        #time.sleep(3) ## only for debugging
         camera.start_preview()
         timestr = time.strftime("%Y%m%d-%H%M%S")
         nomFinalFichier=photo_path+timestr+".jpg" #final canva filename
-        time.sleep(3)
         for x in range(1, 5):
+            time.sleep(1)
             FullSizeFileName=photo_path+str(timestr)+"_"+str(x)+".jpg" #fullsize picture filename
             camera.capture(FullSizeFileName,format='jpeg') # take a pic, name it
             allImages.append(FullSizeFileName)
-            time.sleep(1)
         createCanva(allImages,nomFinalFichier)
-        splash(nomFinalFichier)
         camera.stop_preview()
-
+	splash(nomFinalFichier)
         time.sleep(5)
-        #sys.exit()
+	#camera.stop_preview()

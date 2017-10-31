@@ -26,6 +26,7 @@ GPIO.setup(gpioShutdownPort, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # new
 
 while True:
     GPIO.wait_for_edge(gpioShutdownPort, GPIO.FALLING)
+    print "COUCOU"
     start = time.time()
     time.sleep(0.2)
 
