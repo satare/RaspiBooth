@@ -16,8 +16,9 @@ if [ ! -d "$photoDir" ]; then
 fi
 
 #first usbKey is /dev/sda1 (first partition)
-sudo mount /dev/sda1 $photoDir -o uid=pi,gid=pi
-sudo chown pi:pi $photoDir
+#sudo mount -t ntfs-3g -o uid=pi,gid=pi /dev/sda1 $photoDir
+sudo mount /dev/sda1 $photoDir #-o uid=pi,gid=pi
+#sudo chown pi:pi $photoDir
 
 #launch photobooth script
 python $RaspiBoothDir/photo.py $photoDir $photoGPIO  # arg1 : photoDir, arg2 : gpioPin to trigger ; no "&" 
