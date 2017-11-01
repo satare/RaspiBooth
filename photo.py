@@ -50,17 +50,13 @@ def splash(fileName):
     pygame.init()
     FinalImage=Image.open(fileName) # open fullsize
     FinalImage=FinalImage.resize(getResolution(), Image.ANTIALIAS) # resize image
-    FinalImage.save(photo_path+"/preview.jpeg")
-    image=pygame.image.load(photo_path+"/preview.jpeg")
+    FinalImage.save(photo_path+"preview.jpeg")
+    image=pygame.image.load(photo_path+"preview.jpeg")
     screen.blit(image, (0 , 0))
     pygame.display.update()
 
 with picamera.PiCamera() as camera:
     pygame.init()
-    #camera.vflip = True
-    #myfont = pygame.font.SysFont("monospace", 62)
-    #dispInfo=pygame.display.Info()
-    #print dispInfo
     screen = pygame.display.set_mode(getResolution())
     pygame.mouse.set_visible(False)
     while True:
@@ -75,8 +71,8 @@ with picamera.PiCamera() as camera:
             FullSizeFileName=photo_path+str(timestr)+"_"+str(x)+".jpg" #fullsize picture filename
             camera.capture(FullSizeFileName,format='jpeg') # take a pic, name it
             allImages.append(FullSizeFileName)
-        createCanva(allImages,nomFinalFichier)
         camera.stop_preview()
-	splash(nomFinalFichier)
+	createCanva(allImages,nomFinalFichier)
+        splash(nomFinalFichier)
         time.sleep(5)
-	#camera.stop_preview()
+
