@@ -65,7 +65,7 @@ with picamera.PiCamera() as camera:
         GPIO.wait_for_edge(gpio_pin, GPIO.FALLING)  # new
         camera.start_preview()
         timestr = time.strftime("%Y%m%d-%H%M%S")
-        nomFinalFichier=photo_path+timestr+".jpg" #final canva filename
+        nomFinalFichier=photo_path+"canva"+timestr+".jpg" #final canva filename
         for x in range(1, 5):
             time.sleep(1)
             FullSizeFileName=photo_path+str(timestr)+"_"+str(x)+".jpg" #fullsize picture filename
