@@ -13,10 +13,11 @@ python $RaspiBoothDir/shut_and_reboot.py $resetGPIO & # arg : gpio pin to trigge
 #create photoDir and mount usbkey into
 if [ ! -d "$photoDir" ]; then
   mkdir $photoDir -p
-  chown pi:pi $photoDir -R
 fi
 
 #first usbKey is /dev/sda1 (first partition)
 sudo mount /dev/sda1 $photoDir -o uid=pi,gid=pi
+sudo chown pi:pi $photoDir
+
 #launch photobooth script
 python $RaspiBoothDir/photo.py $photoDir $photoGPIO  # arg1 : photoDir, arg2 : gpioPin to trigger ; no "&" 
